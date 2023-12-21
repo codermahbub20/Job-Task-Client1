@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import { app } from "../firebase/firebase.config";
+
 
 import useAxiosRandom from "../Components/Hook/useAxiosRandom";
+import { app } from "../firebase.config";
+import axiosPublic from "../Components/Hook/axiosPublic";
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -60,7 +62,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const userInfo = { email: currentUser.email }
         //
-        axiosRandom.post('/jwt', userInfo)
+        axiosPublic.post('/jwt', userInfo)
           .then(res => {
             if (res.data.token) {
               localStorage.setItem('access token', res.data.token)
