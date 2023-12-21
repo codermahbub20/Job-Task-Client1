@@ -1,6 +1,6 @@
 
 import { FaTasks } from "react-icons/fa";
-import { FaUsers } from "react-icons/fa";
+import { VscTasklist } from "react-icons/vsc";
 // Components
 import MenuItem from './MenuItem'
 
@@ -13,9 +13,9 @@ const Menu = () => {
                 address='/dashboard'
               />
               <MenuItem
-                icon={FaUsers}
-                label='Manage Members'
-                address='/dashboard/manageMember'
+                icon={VscTasklist}
+                label='All Task'
+                address='/dashboard/allTask'
               />
               
         </>
