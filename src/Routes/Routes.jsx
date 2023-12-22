@@ -8,6 +8,7 @@ import LogIn from "../Components/Pages/Login/Login";
 import DashboardLayout from "../Components/Pages/DashBoard/DashboardLayout";
 import CreateTask from "../Components/Pages/CreateTask/CreateTask";
 import AllTask from "../Components/Pages/AllTask/AllTask";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -30,15 +31,15 @@ export const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: "/dashboard",
-                element: <CreateTask></CreateTask>
+                element: <PrivateRoute><CreateTask></CreateTask></PrivateRoute>
             },
             {
                 path: "allTask",
-                element: <AllTask></AllTask>
+                element: <PrivateRoute><AllTask></AllTask></PrivateRoute>
             }
         ]
     }

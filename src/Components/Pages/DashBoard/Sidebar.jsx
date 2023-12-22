@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 // Icons
 import { GrLogout } from 'react-icons/gr'
@@ -7,14 +7,17 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import Menu from './Menu'
 
+import { AuthContext } from '../../../Providers/AuthProvider'
+
 
 
 const Sidebar = () => {
 
     const [isActive, setActive] = useState(false)
-    
 
-
+    const { user } = useContext(AuthContext)
+    // console.log(user.photoURL)
+    // const myImage = user?.photoURL
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
@@ -26,8 +29,9 @@ const Sidebar = () => {
             <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
                 <div>
                     <div className='block cursor-pointer p-4 font-bold'>
-                        {/* <Logo /> */}
+                   
                     </div>
+                    
                 </div>
 
                 <button
@@ -46,19 +50,21 @@ const Sidebar = () => {
                     <div>
                         <Link to="/">
                             <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-                                <img src="../../../../public/logo11.png" alt="" />
+                                <img className='rounded-full' src={user?.photoURL} alt="" />
+                                
                             </div>
+                            <h1 className='text-xl'>Name: {user?.displayName}</h1>
                         </Link>
                     </div>
 
                     {/* Nav Items */}
                     <div className='flex flex-col justify-between flex-1 mt-6'>
-                        
+
 
                         <nav>
 
-                        <Menu></Menu>
-                           
+                            <Menu></Menu>
+
 
                         </nav>
 
